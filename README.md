@@ -53,4 +53,4 @@ Open `visualization.ipynb` and follow the instructions inside. You should be see
 ## Now you may start your own project with RAT7M!
 If you use this dataset, please kindly cite:
 
-    Marshall, Jesse D.; Aldarondo, Diego; Wang, William; P. Ölveczky, Bence; Dunn, Timothy (2021): Rat 7M Videos Subject 1 - Day 1. figshare. Dataset. https://doi.org/10.6084/m9.figshare.13751023.v1 
+Marshall, Jesse D.; Aldarondo, Diego; Wang, William; P. Ölveczky, Bence; Dunn, Timothy (2021): Rat 7M Videos Subject 1 - Day 1. figshare. Dataset. https://doi.org/10.6084/m9.figshare.13751023.v1 
