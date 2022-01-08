@@ -11,15 +11,15 @@ It is expected to run the following in a **Python3** environment, with extra dep
 * opencv-python
 * urllib3
 
-## Download
+# Download
 To download the dataset, run `python download_all.py`, which yields 3 new folders under the current directory:
 * `video_sequences` containing all *.mp4 video sequences (n=2028).
     * Each video is named with the fashion of `{subject_id}-{recording-day}-{camera_id}-{starting_frame_idx}.mp4` and should each contain at most 3500 frames.
 * `annnotations` with motion capture annotation data and camera parameters.
 * (`zips` containing all original data in zip format; can be safely deleted if needed.)
 
-## Extract training & test frames from videos
-### Overview
+# Extract training & test frames from videos
+## Overview
 This training/test subset of RAT7M contains N=112730 data samples/timesteps extracted from the available video sequences. 
 * Notice that each data sample DOES NOT correspond to one single image, but 6 from different synchronized camera views. 
 * Details in the split:
@@ -34,7 +34,7 @@ This training/test subset of RAT7M contains N=112730 data samples/timesteps extr
         * s5-d2: 14091
 
 
-### Download additional annotation
+## Download additional annotation
 Use the Google Drive link to download [rat7m_train_test_annotation.pkl](https://drive.google.com/file/d/1sZwwX2v0NGkT9j3I5-QCetCxCKEZk5U-/view?usp=sharing). 
 
 * This annotation file is organized as a nested dictionary:
@@ -66,7 +66,7 @@ Use the Google Drive link to download [rat7m_train_test_annotation.pkl](https://
     * Find data samples corresponding to s5-d1: `np.logical_and(annot_dict['table']['subject_idx'] == 5, annot_dict['table']['day_idx'] == 1)`
     * 2D keypoint coordinates for the i-th data point from camera 4: `annot_dict['table']['2D_keypoints']['Camera4'][i-1]`
 
-### Frame extraction
+## Frame extraction
 Run `python extract_frames.py`, which should yield
 * `images_unpacked` containing all unpacked frames. It is organized as follows:
 ```
@@ -86,18 +86,18 @@ Run `python extract_frames.py`, which should yield
     - s4-d1/
     - s5-d1/
 ```
-### Sanity check by visualization
+## Sanity check by visualization
 Open `visualization.ipynb` and follow the instructions inside. If everything works correctly, you should be seeing an image similar to 
 
 ![sample_frame](commons/sample_frame.png)
 
-## (Optional) Compute validation metric with predictions
-### Common metrics used in 3D pose estimation
+# (Optional) Compute validation metric with predictions
+## Common metrics used in 3D pose estimation
 * Mean Per-Joint Position Error (MPJPE): mean Euclidean/L2 distances between predicted keypoints and ground truth.
 * PA-MPJPE (Procrustes Analysis, i.e. MPJPE after rigid alignment with the ground truth skeletons after translation, rotation and scale).
 * Normalized MPJPE (N-MPJPE), which only evaluates the scale.
 
-### One example
+## One example
 * The script `metrics.py` contains helper functions that compute the above metrics. To use, simply add `from metrics import mpjpe, pa_mpjpe, n_mpjpe` to your evaluation script.
 * Each function expects two arguments:
     * `predicted`: numpy.darray of shape (n_samples, n_joints, 2/3)
@@ -105,7 +105,18 @@ Open `visualization.ipynb` and follow the instructions inside. If everything wor
 
     and returns:
     * numpy.darray of shape (n_sample, )
-## Now you may start your own project with RAT7M!
-If you use this dataset, please kindly cite:
 
-**Dunn, T.W., Marshall, J.D., Severson, K.S., Aldarondo, D.E., Hildebrand, D.G., Chettih, S.N., Wang, W.L., Gellis, A.J., Carlson, D.E., Aronov, D. and Freiwald, W.A., 2021. Geometric deep learning enables 3D kinematic profiling across species and environments. Nature methods, 18(5), pp.564-573.**
+# Now you may start your own project with RAT7M!
+If you use this dataset, please kindly cite:
+```
+@article{dunn2021geometric,
+  title={Geometric deep learning enables 3D kinematic profiling across species and environments},
+  author={Dunn, Timothy W and Marshall, Jesse D and Severson, Kyle S and Aldarondo, Diego E and Hildebrand, David GC and Chettih, Selmaan N and Wang, William L and Gellis, Amanda J and Carlson, David E and Aronov, Dmitriy and others},
+  journal={Nature methods},
+  volume={18},
+  number={5},
+  pages={564--573},
+  year={2021},
+  publisher={Nature Publishing Group}
+}
+```
