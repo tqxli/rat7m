@@ -4,13 +4,13 @@ RAT7M is an animal (rat) pose estimation database containing nearly 7 million fr
 
 ![RAT7M Overview](commons/rat7m.jpeg)
 
-Given the massive number of available frames in the dataset, we offer this additional instruction for generating a smaller subset of 2D training and test frames. The scripts in this repository enable automatically downloading, frame extraction and annotation processing of the original RAT7M release, making it easy for training algorithms used in rodents.
+Given the massive number of available frames in the dataset, we offer this additional instruction for generating a smaller subset of 2D training and test frames. The scripts in this repository enable automatically downloading, frame extraction and annotation processing of the original RAT7M release, making it easy for training ML/DL algorithms used for rodents.
 
 ## Prerequisites
 It is expected to run the following in a **Python3** environment, with extra dependencies on:
 * opencv-python
 * urllib3
-* (optional, only for visualization) matplitlib 
+* (optional, only for visualization) matplotlib 
 
 # Download
 To download the dataset, run `python download_all.py`, which yields 3 new folders under the current directory:
