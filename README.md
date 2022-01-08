@@ -10,6 +10,7 @@ Given the massive number of available frames in the dataset, we offer this addit
 It is expected to run the following in a **Python3** environment, with extra dependencies on:
 * opencv-python
 * urllib3
+* (optional, only for visualization) matplitlib 
 
 # Download
 To download the dataset, run `python download_all.py`, which yields 3 new folders under the current directory:
