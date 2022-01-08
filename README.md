@@ -94,9 +94,9 @@ Open `visualization.ipynb` and follow the instructions inside. If everything wor
 
 # (Optional) Compute validation metric with predictions
 ## Common metrics used in 3D pose estimation
-* Mean Per-Joint Position Error (MPJPE): mean Euclidean/L2 distances between predicted keypoints and ground truth.
-* PA-MPJPE (Procrustes Analysis, i.e. MPJPE after rigid alignment with the ground truth skeletons after translation, rotation and scale).
-* Normalized MPJPE (N-MPJPE), which only evaluates the scale.
+* **Mean Per-Joint Position Error (MPJPE)**: mean Euclidean/L2 distances between predicted keypoints and ground truth.
+* **Procrustes Analysis MPJPE (PA-MPJPE)**: MPJPE after rigid alignment with the ground truth skeletons after translation, rotation and scale).
+* **Normalized MPJPE (N-MPJPE)**: MPJPE after scale normalization to make the evaluation independent of sizes.
 
 ## One example
 * The script `metrics.py` contains helper functions that compute the above metrics. To use, simply add `from metrics import mpjpe, pa_mpjpe, n_mpjpe` to your evaluation script.
