@@ -4,7 +4,7 @@
 # Description
 **RAT7M** is an animal (rat) pose estimation database containing nearly 7 million frames with 2D & 3D keypoints acquired from motion capture across a diverse variety of rodent poses. This dataset was initially used in our paper [Geometric deep learning enables 3D kinematic profiling across species and environments (Dunn et al. 2021, Nat Methods)](https://www.nature.com/articles/s41592-021-01106-6), i.e. [DANNCE (code release)](https://github.com/spoonsso/dannce). 
 
-Given the massive number of available frames in the dataset, additional instructions are offered in this repository for generating a smaller subset from the full RAT7M release, referred as **"mini-RAT7M"**. We wish that it can be used as a reliable benchmark in the development of animal/rodent tracking algorithms, especially under common deep learning frameworks such as PyTorch and Tensorflow.
+Given the massive number of available frames in the dataset, additional instructions are offered in this repository for generating a smaller subset of 2D frames from the full RAT7M release， referred as **"mini-RAT7M"**. We anticipate that it can be used as a reliable benchmark in the development of animal/rodent tracking algorithms, especially under common deep learning frameworks such as PyTorch and Tensorflow.
 
 **Table of Contents**
 - [Downloads](#downloads)
@@ -17,6 +17,7 @@ Given the massive number of available frames in the dataset, additional instruct
     - [Visualization](#sanity-check-by-visualization)
 - [Compute error metrics](#compute-error-metrics)
     - [Introduction to common metrics](#common-metrics)
+    - [Utility functions](#utility-functions)
 - [Reference](#now-you-may-start-your-own-project-with-rat7m)
 
 # Downloads
@@ -72,7 +73,7 @@ Use the Google Drive link to download [mini-rat7m_train_test_annotation.pkl](htt
 ### Organization: 
 ```javascript
 annot_dict = {
-    "cameras": dict[subject_idx][day_idx][camera_name] // camera parameters
+    "cameras": dict[subject_idx][day_idx][camera_name] // dict of camera parameters as introduced above
     "camera_names": numpy.ndarray // "Camera1"
 
     "table": {
@@ -117,11 +118,11 @@ Run `python extract_frames.py`, which should yield
         - s5-d1/
     ```
 ## Sanity check by visualization
-Open `visualization.ipynb` and follow the instructions inside. If everything works correctly, you should be seeing an image similar to 
+Open `visualization.ipynb` and follow the instructions inside. If everything works correctly, you should be seeing a random image similar to 
 
 ![sample_frame](commons/example.png)
 
-where the 20 body joint keypoints are marked in red, the center of mass is marked in blue and the keypoints are connected correspondingly.
+where the 20 body joint keypoints are marked in red, the 2D center of mass is marked in blue and the keypoints are connected correspondingly based on anatomy.
 
 # Compute error metrics
 ## Common metrics
@@ -129,14 +130,14 @@ where the 20 body joint keypoints are marked in red, the center of mass is marke
 * **Procrustes Analysis MPJPE (PA-MPJPE)**: MPJPE after rigid alignment with the ground truth skeletons after translation, rotation and scale).
 * **Normalized MPJPE (N-MPJPE)**: MPJPE after scale normalization to make the evaluation independent of subject size.
 
-## Example
-* The script `metrics.py` contains helper functions that compute the above metrics. To use, simply add `from metrics import mpjpe, pa_mpjpe, n_mpjpe` to your evaluation script.
+## Utility functions
+* We include helper functions that help compute the above metrics in the script `metrics.py` contains helper functions. To use, simply add `from metrics import mpjpe, pa_mpjpe, n_mpjpe` to your evaluation script.
 * Each function expects two arguments:
     * `predicted`: numpy.darray of shape (n_samples, n_joints, 2/3)
     * `target`: numpy.darray of shape (n_samples, n_joints, 2/3)
 
-    and returns:
-    * numpy.darray of shape (n_sample, )
+    and returns the error metric results for each sample：
+    * numpy.darray of shape (n_sample, 1)
 
 # Now you may start your own project with RAT7M!
 If you use this dataset, please kindly cite:
