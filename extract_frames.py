@@ -24,7 +24,7 @@ def unpack_video_into_frames(subjectID, dayID, cameraID, frame_indices):
         current_frame = int(start_frame)
         while success:
             if current_frame == frame_indices[count]:
-                save_path = os.path.join(output_dir, 'frame_{}.png'.format(str(current_frame).zfill(6)))
+                save_path = os.path.join(output_dir, 'frame_{}.jpg'.format(str(current_frame).zfill(6)))
                 cv2.imwrite(save_path, image)
                 count += 1
                   

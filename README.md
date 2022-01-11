@@ -27,6 +27,8 @@ It is expected to run the following in a **Python3** environment, with extra dep
 * urllib3
 * (optional, only for visualization) matplotlib
 
+Make sure there is at least 300 GB free disk space.
+
 ## Dataset download and overview
 To download the dataset, run `python download_all.py`, which will yield 3 new folders under the current directory:
 * `video_sequences` containing *.mp4 videos (n=2028).
@@ -81,7 +83,7 @@ annot_dict = {
         "day_idx": numpy.ndarray //recording day (1, 2)
         "train_test": numpy.darray //"train" or "test"
         "frame_idx": dict[camera_name] //video frame index
-        "image_path": dict[camera_name] //relative path to image "images_unpacked/s1-d1/camera1/frame_000014.png"
+        "image_path": dict[camera_name] //relative path to image "images_unpacked/s1-d1/camera1/frame_000014.jpg"
         "2D_keypoints": dict[camera_name]  //2D keypoints w.r.t each camera, with shape [20, 2]
         "2D_com": dict[camera_names]  //2D center of mass
         "3D_keypoints": numpy.ndarray //3D keypoints with shape [20, 3]   
@@ -104,7 +106,7 @@ Run `python extract_frames.py`, which should yield
     - images_unpacked/
         - s1-d1/
             - camera1/
-                - frame_00014.png
+                - frame_00014.jpg
                 - ....
             - camera2/
             - camera3/
