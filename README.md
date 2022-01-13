@@ -70,7 +70,7 @@ Notice that each data sample DOES NOT correspond to one single image, but from 6
 
 
 ## Download annotation
-Use the Google Drive link to download [mini-rat7m_train_test_annotation.pkl](https://drive.google.com/file/d/1sZwwX2v0NGkT9j3I5-QCetCxCKEZk5U-/view?usp=sharing). Besides the corresponding annotations from the full RAT7M, it also contains information needed for extracting the right frames from video sequences. 
+Use the Google Drive link to download [mini_rat7m_train_test_annotation.pkl](https://drive.google.com/file/d/1sZwwX2v0NGkT9j3I5-QCetCxCKEZk5U-/view?usp=sharing). Besides the corresponding annotations from the full RAT7M, it also contains information needed for extracting the right frames from video sequences. 
 
 ### Organization: 
 ```javascript
