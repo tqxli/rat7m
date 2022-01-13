@@ -124,7 +124,10 @@ Open `visualization.ipynb` and follow the instructions inside. If everything wor
 
 ![sample_frame](commons/example.png)
 
-where the 20 body joint keypoints are marked in red, the 2D center of mass is marked in blue and the keypoints are connected correspondingly based on anatomy.
+where
+* 20 body keypoints are marked in red
+* 2D center of mass is marked in blue
+* 21 pairs of keypoints are connected correspondingly based on rat anatomy.
 
 # Compute error metrics
 ## Common metrics
