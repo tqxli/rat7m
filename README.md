@@ -135,14 +135,17 @@ where
 * **Procrustes Analysis MPJPE (PA-MPJPE)**: MPJPE after rigid alignment with the ground truth skeletons after translation, rotation and scale).
 * **Normalized MPJPE (N-MPJPE)**: MPJPE after scale normalization to make the evaluation independent of subject size.
 
-## Utility functions
-* We include helper functions that help compute the above metrics in the script `metrics.py` contains helper functions. To use, simply add `from metrics import mpjpe, pa_mpjpe, n_mpjpe` to your evaluation script.
-* Each function expects two arguments:
-    * `predicted`: numpy.darray of shape (n_samples, n_joints, 2/3)
-    * `target`: numpy.darray of shape (n_samples, n_joints, 2/3)
+## Utility functions & script
+* We provide helper functions for computing the above metrics in `metric_utils/metrics.py`.
+    *  Each function expects two arguments:
+        * `predicted`: numpy.darray of shape (n_samples, n_joints, 2/3)
+        * `target`: numpy.darray of shape (n_samples, n_joints, 2/3)
 
-    and returns the error metric results for each sample：
-    * numpy.darray of shape (n_sample, 1)
+        and returns the error metric results for each sample：
+        * numpy.darray of shape (n_sample, 1)
+* People might also use the script `metric_utils/compute_metrics.py` to automatically compute the error metrics. 
+    * Run `python compute_metrics.py --pred_path /path/to/your/csv/file`. Check `--help` to see other optional arguments.
+    * The CSV file should have a shape of (N=24536, 60) without header, where the second dimension comes from flattening 3D coordinates of the 20 body keypoints, i.e. (keypoint1_x, keypoint1_y, keypoint1_z, keypoint2_x, keypoint2_y, keypoint2_z, ...). 
 
 # Now you may start your own project with RAT7M!
 If you use this dataset, please kindly cite:
