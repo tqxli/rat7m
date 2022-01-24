@@ -41,7 +41,7 @@ To download the dataset, run `python download_all.py`, which will yield 3 new fo
         1. `cameras`: extrinsic and intrinsic parameters for each camera.
             * **'IntrinsicMatrix'**: 3x3 matrix **K** about camera internal properties, including focal lengths, principal points and skewness. 
             * **'RotationMatrix'**: 3x3 matrix **R**.
-            * `'TranslationVector'`: 1x3 vector **t**. 
+            * **'TranslationVector'**: 1x3 vector **t**. 
                 * **R** and **t** are usually referred together as "camera extrinsics", describing the position and orientation of a camera in the world coordinate system.
             * **'TangentialDistortion'**: 1x2 vector describing the distortion from the lens and the image plane not being parallel. 
             * **'RadialDistortion'**: 1x2 vector describing the distortion where light rays bend more away from the optical center. 
