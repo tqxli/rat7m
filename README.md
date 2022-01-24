@@ -27,27 +27,50 @@ It is expected to run the following in a **Python3** environment, with extra dep
 * urllib3
 * (optional, only for visualization) matplotlib
 
-Make sure there is at least 300 GB free disk space.
+Make sure there is at least **300 GB** free disk space.
 
 ## Dataset download and overview
 To download the dataset, run `python download_all.py`, which will yield 3 new folders under the current directory:
 * `video_sequences` containing *.mp4 videos (n=2028).
     * These videos were recorded on **5 subjects**, denoted as `"s1", "s2", "s3", "s4", "s5"`. 
     * Depending on when the recording took place, there exists **7 different recordings**, denoted as `"s1-d1", "s2-d1", "s2-d2", "s3-d1", "s4-d1", "s5-d1" and "s5-d2"`.
-    * In the actual RAT7M, each recording was broken down into a series of video sequences containing at most 3500 frames for better reference. 
-    * Each video sequence is named with the fashion of `{subject_id}-{recording-day}-{camera_id}-{starting_frame_idx}.mp4`.
+    * In the actual RAT7M, each recording was broken down into a series of video sequences containing at most 3500 frames. Each video sequence is named with the fashion of `{subject_id}-{recording-day}-{camera_id}-{starting_frame_idx}.mp4`.
 * `annnotations` containing *.mat files with motion capture data and camera parameters (n=7).
     * Each .mat file corresponds to a specific recording (e.g. "s1-d1") and is named as `mocap-{subject-id}-{recording-day}.mat`.
-    * Inside, each annotation file contains
-        * `cameras`: extrinsic and intrinsic parameters for each camera.
+    * The following information is included in each annotation file:
+        1. `cameras`: extrinsic and intrinsic parameters for each camera.
             * `'IntrinsicMatrix'`: 3x3 matrix **K** about camera internal properties, including focal lengths, principal points and skewness. 
             * `'RotationMatrix'`: 3x3 matrix **R**.
             * `'TranslationVector'`: 1x3 vector **t**. 
                 * **R** and **t** are usually referred together as "camera extrinsics", describing the position and orientation of a camera in the world coordinate system.
             * `'TangentialDistortion'`: 1x2 vector describing the distortion from the lens and the image plane not being parallel. 
             * `'RadialDistortion'`: 1x2 vector describing the distortion where light rays bend more away from the optical center. 
-        * `mocap`: **3D** coordinates for **20 body joints** from motion capture. 
-        * `name`: name of the recording ("Subject1-Day1").
+        2. `mocap`: **3D** coordinates for **20 body joints** from motion capture. 
+            * The coordinates are given in the following order:   
+            ```     
+                0: "Front Head",
+                1: "Back of the Head",
+                2: "Left of the Head",
+                3: "Anterior Spine",
+                4: "Medial Spine",
+                5: "Posterior Spine",
+                6: "Offset 1 (for stability of motion capture)",
+                7: "Offset 2 (for stability of motion capture),
+                8: "Left Hip",
+                9: "Right Hip",
+                10: "Left Elbow",
+                11: "Left Arm",
+                12: "Left Shoulder",
+                13: "Right Shoulder",
+                14: "Right Elbow",
+                15: "Right Arm",
+                16: "Right Knee",
+                17: "Left Knee",
+                18: "Left Shin",
+                19: "Right Shin"
+            ```
+            ![rat7m-joints](commons/rat7m_joints.png)
+        3. `name`: name of the recording ("Subject1-Day1").
     * We recommend using the utility functions `load_cameras()` and `load_mocap()` in `matlab_utils.py` to load the annotations.
 * (`zips` containing all original data in zip format; can be deleted.)
 
