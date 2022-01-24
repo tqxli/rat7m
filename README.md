@@ -39,12 +39,12 @@ To download the dataset, run `python download_all.py`, which will yield 3 new fo
     * Each .mat file corresponds to a specific recording (e.g. "s1-d1") and is named as `mocap-{subject-id}-{recording-day}.mat`.
     * The following information is included in each annotation file:
         1. `cameras`: extrinsic and intrinsic parameters for each camera.
-            * `'IntrinsicMatrix'`: 3x3 matrix **K** about camera internal properties, including focal lengths, principal points and skewness. 
-            * `'RotationMatrix'`: 3x3 matrix **R**.
+            * **'IntrinsicMatrix'**: 3x3 matrix **K** about camera internal properties, including focal lengths, principal points and skewness. 
+            * **'RotationMatrix'**: 3x3 matrix **R**.
             * `'TranslationVector'`: 1x3 vector **t**. 
                 * **R** and **t** are usually referred together as "camera extrinsics", describing the position and orientation of a camera in the world coordinate system.
-            * `'TangentialDistortion'`: 1x2 vector describing the distortion from the lens and the image plane not being parallel. 
-            * `'RadialDistortion'`: 1x2 vector describing the distortion where light rays bend more away from the optical center. 
+            * **'TangentialDistortion'**: 1x2 vector describing the distortion from the lens and the image plane not being parallel. 
+            * **'RadialDistortion'**: 1x2 vector describing the distortion where light rays bend more away from the optical center. 
         2. `mocap`: **3D** coordinates for **20 body joints** from motion capture. 
             * The coordinates are given in the following order:   
             ```     
